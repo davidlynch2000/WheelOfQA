@@ -1,19 +1,61 @@
-.App {
+/* .App {
   text-align: center;
 }
+
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+} */
+
+.App{
+  margin:15px;
+}
+.pageContainer{
+  display:flex;
 }
 
+.headerBanner{
+  display:flex;
+  justify-content: center;
+  font-size: 60px; 
+}
+
+.columnsOfNames{
+  display:flex;
+  flex-direction: column;
+  margin:5px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
 
-.App-header {
+.announceTheWinner{
+  width:90vw;
+  height:80vh;
+  z-index: 99;
+  align-items: center;
+  text-align: center;
+}
+
+.announce{
+  width:100%;
+  font-size:100px;
+}
+
+.nameOfWinner{
+  width:100%;
+  font-size:220px;
+}
+
+.displayFlex{
+  display: flex;
+  flex-direction: column;
+}
+
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,11 +64,11 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
+} */
 
-.App-link {
+/* .App-link {
   color: #61dafb;
-}
+} */
 
 @keyframes App-logo-spin {
   from {
