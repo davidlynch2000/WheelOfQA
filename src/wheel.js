@@ -6,7 +6,7 @@ const Wheel = (props) => {
     const spinning = useRef('');
     const numTotalSpins = useRef(5);
     const selectedName = useRef('');
-    
+
     const SECONDS_TO_SPIN = 6;
 
     const reset = () => {
@@ -27,7 +27,7 @@ const Wheel = (props) => {
     const { items } = props;
 
     const wheelVars = {
-        '--nb-item': items.length,
+        '--nb-item': items.length > 0 ? items.length : 1,
         '--selected-item': selectedItemIdx,
         '--nb-turn': numTotalSpins.current,
         '--spinning-duration': `${SECONDS_TO_SPIN}s`,
