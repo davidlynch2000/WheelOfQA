@@ -3,6 +3,7 @@
 }
 .pageContainer{
   display:flex;
+  justify-content:space-evenly;
 }
 
 .headerBanner{
@@ -35,6 +36,15 @@
   font-size:220px;
 }
 
+.sassy-announce{
+  width:100%;
+  font-size:70px;
+}
+
+.sassy-nameOfWinner{
+  width:100%;
+  font-size:140px;
+}
 .displayFlex{
   display: flex;
   flex-direction: column;

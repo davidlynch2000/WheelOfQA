@@ -15,6 +15,10 @@ const Wheel = (props) => {
     }
 
     const selectItem = () => {
+        if(props.items.length < 1){
+            props.popUpSassyModal();
+            return;
+        }
         spinning.current = 'spinning';
         const selectedIdx = Math.floor(Math.random() * props.items.length);
         console.log(`selectedIdx: ${selectedIdx}`);

@@ -130,6 +130,10 @@ const App = () => {
   const popUpWinningModal = (winner) => {
     setFoundWinner(true);
   }
+
+  const popUpSassyModal = (winner) => {
+    setFoundWinner(true);
+  }
   /**
    * A semi-generic way to handle multiple lists. Matches
    * the IDs of the droppable container to the names of the
@@ -187,13 +191,24 @@ const App = () => {
 
   return (
     <div className="App">
-
+      {availableForQA.length >1 ?
       <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
         <div className='announce'>The Winner is </div>
         <div className='nameOfWinner'>{selectedForQA}</div>
       </dialog>
+      :
+      <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
+        <div className='sassy-announce'>Well look at  </div>
+        <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
+        <div className='sassy-announce'>over here!</div>
+        <div className='sassy-announce'>You spun it, now you've WON it</div>
+        <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
+      </dialog>
+
+      }
 
       <h1 className='headerBanner'>Wheel of QA!</h1>
+      
       <div className='pageContainer'>
         <DragDropContext onDragEnd={onDragEnd} className='DAndD'>
           <div className='columnsOfNames'>
@@ -267,6 +282,7 @@ const App = () => {
           items={availableForQA.map(teamMember => teamMember.id)}
           setSelectedForQA={setSelectedForQA}
           popUpWinningModal={popUpWinningModal}
+          popUpSassyModal={popUpSassyModal}
         />
       </div>
     </div>
