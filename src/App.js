@@ -201,6 +201,7 @@ const App = () => {
         <div className='sassy-announce'>Well look at  </div>
         <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
         <div className='sassy-announce'>over here!</div>
+        <div className='sassy-announce'>Spinner of Wheels and Finder of Bugs!</div>
         <div className='sassy-announce'>You spun it, now you've WON it</div>
         <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
       </dialog>
