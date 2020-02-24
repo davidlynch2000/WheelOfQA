@@ -195,6 +195,12 @@ const App = () => {
     });
   }
 
+  const checkForEnter = (e) =>{
+    if(e.keyCode == 13){
+      toggleTitleEditable();
+   }
+  }
+
   const changeTitle = (e) => {
     setTitle(e.target.value);
   }
@@ -227,6 +233,7 @@ const App = () => {
           value={title}
           onChange={changeTitle}
           onBlur={toggleTitleEditable}
+          onKeyDown={checkForEnter}
         />
         :
         <h1 className='headerBanner' onClick={toggleTitleEditable}>{title}</h1>
