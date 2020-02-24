@@ -125,6 +125,8 @@ const App = () => {
   const [availableForQA, setAvailableForQA] = useState([]);
   const [selectedForQA, setSelectedForQA] = useState('');
   const [foundWinner, setFoundWinner] = useState(false);
+  const [title, setTitle] = useState('Wheel of QA!');
+  const [titleCanChange, setTitleCanChange] = useState(false);
 
 
   const popUpWinningModal = (winner) => {
@@ -187,29 +189,50 @@ const App = () => {
     setFoundWinner(false);
   }
 
-  const flexClass = foundWinner ? 'displayFlex': '';
+  const toggleTitleEditable = () => {
+    setTitleCanChange(curTitleEditable =>{
+      return !curTitleEditable; 
+    });
+  }
+
+  const changeTitle = (e) => {
+    setTitle(e.target.value);
+  }
+
+  const flexClass = foundWinner ? 'displayFlex' : '';
 
   return (
     <div className="App">
-      {availableForQA.length >1 ?
-      <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
-        <div className='announce'>The Winner is </div>
-        <div className='nameOfWinner'>{selectedForQA}</div>
-      </dialog>
-      :
-      <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
-        <div className='sassy-announce'>Well look at  </div>
-        <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
-        <div className='sassy-announce'>over here!</div>
-        <div className='sassy-announce'>Spinner of Wheels and Finder of Bugs!</div>
-        <div className='sassy-announce'>You spun it, now you've WON it</div>
-        <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
-      </dialog>
+      {availableForQA.length > 1 ?
+        <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
+          <div className='announce'>The Winner is </div>
+          <div className='nameOfWinner'>{selectedForQA}</div>
+        </dialog>
+        :
+        <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
+          <div className='sassy-announce'>Well look at  </div>
+          <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
+          <div className='sassy-announce'>over here!</div>
+          <div className='sassy-announce'>Spinner of Wheels and Finder of Bugs!</div>
+          <div className='sassy-announce'>You spun it, now you've WON it</div>
+          <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
+        </dialog>
 
       }
 
-      <h1 className='headerBanner'>Wheel of QA!</h1>
-      
+      {titleCanChange ?
+        <input
+          className='headerBanner'
+          type='text'
+          value={title}
+          onChange={changeTitle}
+          onBlur={toggleTitleEditable}
+        />
+        :
+        <h1 className='headerBanner' onClick={toggleTitleEditable}>{title}</h1>
+      }
+
+
       <div className='pageContainer'>
         <DragDropContext onDragEnd={onDragEnd} className='DAndD'>
           <div className='columnsOfNames'>
