@@ -38,12 +38,12 @@
 
 .sassy-announce{
   width:100%;
-  font-size:70px;
+  font-size:35px;
 }
 
 .sassy-nameOfWinner{
   width:100%;
-  font-size:140px;
+  font-size:70px;
 }
 .displayFlex{
   display: flex;
