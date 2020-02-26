@@ -48,7 +48,7 @@ const Wheel = (props) => {
                 ))}
             </div>
             <div className="buttonContainer">
-                <button type='button' onClick={selectItem}>Spin It!</button>
+                <button type='button' onClick={selectItem} className='spinItButton'>Spin It!</button>
             </div>
         </div>
     );

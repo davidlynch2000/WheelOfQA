@@ -145,7 +145,7 @@
       display:flex;
       justify-content: center;
   }
-  button{
+  .spinItButton{
       font-size:70px;
       background:skyblue;
   }

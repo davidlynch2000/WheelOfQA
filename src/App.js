@@ -3,6 +3,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import logo from './logo.svg';
 import './App.css';
 import Wheel from './wheel';
+import EditableWheelItem from './EditableWheelItem';
 
 // function App() {
 //   return (
@@ -120,6 +121,7 @@ const getListStyle = isDraggingOver => ({
 
 
 
+
 const App = () => {
   const [teamMembers, setTeamMembers] = useState(getItems());
   const [availableForQA, setAvailableForQA] = useState([]);
@@ -127,7 +129,7 @@ const App = () => {
   const [foundWinner, setFoundWinner] = useState(false);
   const [title, setTitle] = useState('Wheel of QA!');
   const [titleCanChange, setTitleCanChange] = useState(false);
-
+  const [listIsEditable, setListIsEditable] = useState(false);
 
   const popUpWinningModal = (winner) => {
     setFoundWinner(true);
@@ -190,26 +192,38 @@ const App = () => {
   }
 
   const toggleTitleEditable = () => {
-    setTitleCanChange(curTitleEditable =>{
-      return !curTitleEditable; 
+    setTitleCanChange(curTitleEditable => {
+      return !curTitleEditable;
     });
   }
 
-  const checkForEnter = (e) =>{
-    if(e.keyCode == 13){
+  const checkForEnter = (e) => {
+    if (e.keyCode == 13) {
       toggleTitleEditable();
-   }
+    }
   }
 
   const changeTitle = (e) => {
     setTitle(e.target.value);
   }
 
+  const toggleEditableList = () => {
+    setListIsEditable(!listIsEditable);
+  }
+
+  const changeItemContent = (value, idx) => {
+    setTeamMembers(curTeamMembers => {
+      const curTeamMembersCpy = curTeamMembers.slice();
+      curTeamMembersCpy[idx] = { id: value, content: value };
+      return curTeamMembersCpy;
+    });
+  }
+
   const flexClass = foundWinner ? 'displayFlex' : '';
 
   return (
     <div className="App">
-      {availableForQA.length > 1 ?
+      {availableForQA.length > 0 ?
         <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
           <div className='announce'>The Winner is </div>
           <div className='nameOfWinner'>{selectedForQA}</div>
@@ -243,31 +257,46 @@ const App = () => {
       <div className='pageContainer'>
         <DragDropContext onDragEnd={onDragEnd} className='DAndD'>
           <div className='columnsOfNames'>
-            <h2>Team Members</h2>
+            <h2>Team Members
+              <button type='button' onClick={toggleEditableList}>
+                {listIsEditable ? 'Done Editing' : 'Edit List'}
+              </button>
+            </h2>
             <div>
               <Droppable droppableId="droppable2">
                 {(provided, snapshot) => (
                   <div
                     ref={provided.innerRef}
                     style={getListStyle(snapshot.isDraggingOver)}>
+
                     {teamMembers.map((item, index) => (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id}
-                        index={index}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style
-                            )}>
-                            {item.content}
-                          </div>
-                        )}
-                      </Draggable>
+                      listIsEditable ?
+                        <EditableWheelItem
+                          key={index}
+                          value={item.content}
+                          changeItemContent={changeItemContent}
+                          idx={index}
+                        />
+                        :
+                        <Draggable
+                          key={item.id}
+                          draggableId={item.id}
+                          index={index}>
+                          {(provided, snapshot) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                              )}>
+                              {item.content}
+                            </div>
+                          )}
+                        </Draggable>
+
+
                     ))}
                     {provided.placeholder}
                   </div>
