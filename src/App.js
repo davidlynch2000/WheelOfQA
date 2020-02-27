@@ -219,6 +219,19 @@ const App = () => {
     });
   }
 
+  const addItemToList = () =>{
+    setTeamMembers(curTeamMembers =>{
+      return [...curTeamMembers, {id:'', content:''}]
+    })
+  }
+
+  const removeItemFromList = () =>{
+    setTeamMembers(curTeamMembers =>{
+      let removedCurTeamMembersCpy = curTeamMembers.slice(0,curTeamMembers.length-1);
+      return removedCurTeamMembersCpy;
+    })
+  }
+
   const flexClass = foundWinner ? 'displayFlex' : '';
 
   return (
@@ -258,13 +271,13 @@ const App = () => {
         <DragDropContext onDragEnd={onDragEnd} className='DAndD'>
           <div className='columnsOfNames'>
             <h2>Team Members
-              <button type='button' style={{display: listIsEditable ? 'none': ''}} onClick={toggleEditableList}>
+              <button type='button' style={{ display: listIsEditable ? 'none' : '' }} onClick={toggleEditableList}>
                 {listIsEditable ? '' : 'Edit List'}
               </button>
               {(listIsEditable === true) &&
                 <div>
-                  <button type='button'>Add Item</button>
-                  <button type='button'>Remove Item</button>
+                  <button type='button' onClick={addItemToList}>Add Item</button>
+                  <button type='button' onClick={removeItemFromList}>Remove Item</button>
                   <button type='button' onClick={toggleEditableList}>
                     Done Editing
                 </button>
