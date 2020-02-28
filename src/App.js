@@ -219,30 +219,39 @@ const App = () => {
     });
   }
 
-  const addItemToList = () =>{
-    setTeamMembers(curTeamMembers =>{
-      return [...curTeamMembers, {id:'', content:''}]
+  const addItemToList = () => {
+    setTeamMembers(curTeamMembers => {
+      return [...curTeamMembers, { id: '', content: '' }]
     })
   }
 
-  const removeItemFromList = () =>{
-    setTeamMembers(curTeamMembers =>{
-      let removedCurTeamMembersCpy = curTeamMembers.slice(0,curTeamMembers.length-1);
+  const removeItemFromList = () => {
+    setTeamMembers(curTeamMembers => {
+      let removedCurTeamMembersCpy = curTeamMembers.slice(0, curTeamMembers.length - 1);
       return removedCurTeamMembersCpy;
     })
   }
 
+  // What was this supposed to do? When would I not want it to be displayed with flex?
   const flexClass = foundWinner ? 'displayFlex' : '';
 
   return (
     <div className="App">
       {availableForQA.length > 0 ?
-        <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
+        <dialog
+          className={`announceTheWinner ${flexClass}`}
+          open={foundWinner}
+          onClick={closeIt}
+        >
           <div className='announce'>The Winner is </div>
           <div className='nameOfWinner'>{selectedForQA}</div>
         </dialog>
         :
-        <dialog className={`announceTheWinner ${flexClass}`} open={foundWinner} onClick={closeIt}>
+        <dialog
+          className={`announceTheWinner ${flexClass}`}
+          open={foundWinner}
+          onClick={closeIt}
+        >
           <div className='sassy-announce'>Well look at  </div>
           <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
           <div className='sassy-announce'>over here!</div>
@@ -278,7 +287,10 @@ const App = () => {
                 <div>
                   <button type='button' onClick={addItemToList}>Add Item</button>
                   <button type='button' onClick={removeItemFromList}>Remove Item</button>
-                  <button type='button' onClick={toggleEditableList} style={{background:'skyblue'}}>
+                  <button type='button'
+                    onClick={toggleEditableList}
+                    style={{ background: 'skyblue', marginLeft: '15px' }}
+                  >
                     Done Editing
                 </button>
                 </div>
