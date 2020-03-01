@@ -262,6 +262,7 @@ const App = () => {
 
       }
 
+      <div className="headerBanner">
       {titleCanChange ?
         <input
           className='headerBanner'
@@ -272,9 +273,9 @@ const App = () => {
           onKeyDown={checkForEnter}
         />
         :
-        <h1 className='headerBanner' onClick={toggleTitleEditable}>{title}</h1>
+        <h1 onClick={toggleTitleEditable}>{title}</h1>
       }
-
+      </div>
 
       <div className='pageContainer'>
         <DragDropContext onDragEnd={onDragEnd} className='DAndD'>
