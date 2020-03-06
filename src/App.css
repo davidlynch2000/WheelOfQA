@@ -12,12 +12,6 @@
   font-size: 35px; 
 }
 
-.columnsOfNames{
-  display:flex;
-  flex-direction: column;
-  margin:5px;
-}
-
 .announceTheWinner{
   width:90vw;
   height:80vh;

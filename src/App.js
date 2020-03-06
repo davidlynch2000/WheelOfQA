@@ -1,9 +1,9 @@
-import React, { Component, useState, useRef } from 'react';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import React, { useState, useRef } from 'react';
+import { DragDropContext} from 'react-beautiful-dnd';
 import logo from './logo.svg';
 import './App.css';
 import Wheel from './wheel';
-import EditableWheelItem from './EditableWheelItem';
+import ListColumn from './ListColumn';
 
 // function App() {
 //   return (
@@ -180,7 +180,7 @@ const App = () => {
         source,
         destination
       );
-
+      
       setAvailableForQA(result.droppable);
       setTeamMembers(result.droppable2);
     }
@@ -263,115 +263,47 @@ const App = () => {
       }
 
       <div className="headerBanner">
-      {titleCanChange ?
-        <input
-          className='headerBanner'
-          type='text'
-          value={title}
-          onChange={changeTitle}
-          onBlur={toggleTitleEditable}
-          onKeyDown={checkForEnter}
-        />
-        :
-        <h1 onClick={toggleTitleEditable}>{title}</h1>
-      }
+        {titleCanChange ?
+          <input
+            className='headerBanner'
+            type='text'
+            value={title}
+            onChange={changeTitle}
+            onBlur={toggleTitleEditable}
+            onKeyDown={checkForEnter}
+          />
+          :
+          <h1 onClick={toggleTitleEditable}>{title}</h1>
+        }
       </div>
 
       <div className='pageContainer'>
         <DragDropContext onDragEnd={onDragEnd} className='DAndD'>
-          <div className='columnsOfNames'>
-            <h2>Team Members
-              <button type='button' style={{ display: listIsEditable ? 'none' : '' }} onClick={toggleEditableList}>
-                {listIsEditable ? '' : 'Edit List'}
-              </button>
-              {(listIsEditable === true) &&
-                <div>
-                  <button type='button' onClick={addItemToList}>Add Item</button>
-                  <button type='button' onClick={removeItemFromList}>Remove Item</button>
-                  <button type='button'
-                    onClick={toggleEditableList}
-                    style={{ background: 'skyblue', marginLeft: '15px' }}
-                  >
-                    Done Editing
-                </button>
-                </div>
-              }
-            </h2>
-            <div>
-              <Droppable droppableId="droppable2">
-                {(provided, snapshot) => (
-                  <div
-                    ref={provided.innerRef}
-                    style={getListStyle(snapshot.isDraggingOver)}>
+          <ListColumn
+            columnTitle='Team Members'
+            addItemToList={addItemToList}
+            removeItemFromList={removeItemFromList}
+            toggleEditableList={toggleEditableList}
+            getListStyle={getListStyle}
+            changeItemContent={changeItemContent}
+            getItemStyle={getItemStyle}
+            allItems={teamMembers}
+            droppableId='droppable2'
+          />
 
-                    {teamMembers.map((item, index) => (
-                      listIsEditable ?
-                        <EditableWheelItem
-                          key={index}
-                          value={item.content}
-                          changeItemContent={changeItemContent}
-                          idx={index}
-                        />
-                        :
-                        <Draggable
-                          key={item.id}
-                          draggableId={item.id}
-                          index={index}>
-                          {(provided, snapshot) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                              style={getItemStyle(
-                                snapshot.isDragging,
-                                provided.draggableProps.style
-                              )}>
-                              {item.content}
-                            </div>
-                          )}
-                        </Draggable>
+          <ListColumn
+            columnTitle='Available For QA'
+            addItemToList={addItemToList}
+            removeItemFromList={removeItemFromList}
+            toggleEditableList={toggleEditableList}
+            getListStyle={getListStyle}
+            changeItemContent={changeItemContent}
+            getItemStyle={getItemStyle}
+            allItems={availableForQA}
+            droppableId='droppable'
+          />
 
-
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            </div>
-          </div>
-          <div className='columnsOfNames'>
-            <h2>Available for QA</h2>
-            <Droppable droppableId="droppable">
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}>
-                  {availableForQA.map((item, index) => (
-                    <Draggable
-                      key={item.id}
-                      draggableId={item.id}
-                      index={index}>
-                      {(provided, snapshot) => (
-                        <div
-                          ref={provided.innerRef}
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          style={getItemStyle(
-                            snapshot.isDragging,
-                            provided.draggableProps.style
-                          )}>
-                          {item.content}
-                        </div>
-                      )}
-                    </Draggable>
-                  ))}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </div>
         </DragDropContext>
-
 
         <Wheel
           items={availableForQA.map(teamMember => teamMember.id)}
