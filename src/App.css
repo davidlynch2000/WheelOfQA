@@ -28,6 +28,9 @@
 .nameOfWinner{
   width:100%;
   font-size:220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .sassy-announce{
