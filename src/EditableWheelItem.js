@@ -1,9 +1,9 @@
 import React from 'react';
 
-const EditableWheelItem = ({ value, idx, changeItemContent }) => {
+const EditableWheelItem = ({ value, idx, changeItemContent,functionForEditingList }) => {
     
     const changeTheValue = (e) => {
-        changeItemContent(e.target.value, idx);
+        changeItemContent(e.target.value, idx,functionForEditingList);
     }
 
     return (

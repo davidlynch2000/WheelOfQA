@@ -211,22 +211,22 @@ const App = () => {
     setListIsEditable(!listIsEditable);
   }
 
-  const changeItemContent = (value, idx) => {
-    setTeamMembers(curTeamMembers => {
+  const changeItemContent = (value, idx, functionForEditingList) => {
+    functionForEditingList(curTeamMembers => {
       const curTeamMembersCpy = curTeamMembers.slice();
       curTeamMembersCpy[idx] = { id: value, content: value };
       return curTeamMembersCpy;
     });
   }
 
-  const addItemToList = () => {
-    setTeamMembers(curTeamMembers => {
+  const addItemToList = (functionForEditingList) => {
+    functionForEditingList(curTeamMembers => {
       return [...curTeamMembers, { id: '', content: '' }]
     })
   }
 
-  const removeItemFromList = () => {
-    setTeamMembers(curTeamMembers => {
+  const removeItemFromList = (functionForEditingList) => {
+    functionForEditingList(curTeamMembers => {
       let removedCurTeamMembersCpy = curTeamMembers.slice(0, curTeamMembers.length - 1);
       return removedCurTeamMembersCpy;
     })
@@ -289,6 +289,7 @@ const App = () => {
             getItemStyle={getItemStyle}
             allItems={teamMembers}
             droppableId='droppable2'
+            functionForEditingList={setTeamMembers}
           />
 
           <ListColumn
@@ -301,6 +302,7 @@ const App = () => {
             getItemStyle={getItemStyle}
             allItems={availableForQA}
             droppableId='droppable'
+            functionForEditingList={setAvailableForQA}
           />
 
         </DragDropContext>

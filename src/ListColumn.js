@@ -13,11 +13,20 @@ const ListColumn = ({
     allItems,
     changeItemContent,
     getItemStyle,
-    droppableId }) => {
+    droppableId,
+    functionForEditingList }) => {
     const [listIsEditable, setListIsEditable] = useState(false);
 
     const toggleEditableList = () => {
         setListIsEditable(!listIsEditable);
+    }
+
+    const addingAnItemToTheList = () =>{
+        addItemToList(functionForEditingList);
+    }
+
+    const removingAnItemFromTheList = () =>{
+        removeItemFromList(functionForEditingList);
     }
 
     return (
@@ -28,8 +37,8 @@ const ListColumn = ({
                 </button>
                 {(listIsEditable === true) &&
                     <div>
-                        <button type='button' onClick={addItemToList}>Add Item</button>
-                        <button type='button' onClick={removeItemFromList}>Remove Item</button>
+                        <button type='button' onClick={addingAnItemToTheList}>Add Item</button>
+                        <button type='button' onClick={removingAnItemFromTheList}>Remove Item</button>
                         <button type='button'
                             onClick={toggleEditableList}
                             style={{ background: 'skyblue', marginLeft: '15px' }}
@@ -53,6 +62,7 @@ const ListColumn = ({
                                         value={item.content}
                                         changeItemContent={changeItemContent}
                                         idx={index}
+                                        functionForEditingList={functionForEditingList}
                                     />
                                     :
                                     <Draggable
