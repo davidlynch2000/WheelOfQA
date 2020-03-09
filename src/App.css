@@ -31,6 +31,17 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  animation: shimmerIn 3s ease-in 1 normal;
+  color: blue;
+}
+
+@keyframes shimmerIn{
+  0%{
+    filter:blur(500px);
+  }
+  100%{
+    filter: blur(0px);
+  }
 }
 
 .sassy-announce{
