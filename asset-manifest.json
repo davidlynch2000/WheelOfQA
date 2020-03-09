@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/WheelOfQA/static/css/main.ae7bc2d1.chunk.css",
+    "main.css": "/WheelOfQA/static/css/main.b97c6f13.chunk.css",
     "main.js": "/WheelOfQA/static/js/main.66ba0279.chunk.js",
     "main.js.map": "/WheelOfQA/static/js/main.66ba0279.chunk.js.map",
     "runtime-main.js": "/WheelOfQA/static/js/runtime-main.07dec595.js",
@@ -8,16 +8,16 @@
     "static/js/2.4963b150.chunk.js": "/WheelOfQA/static/js/2.4963b150.chunk.js",
     "static/js/2.4963b150.chunk.js.map": "/WheelOfQA/static/js/2.4963b150.chunk.js.map",
     "index.html": "/WheelOfQA/index.html",
-    "precache-manifest.3100d376c43f791503882ff79acc1f1b.js": "/WheelOfQA/precache-manifest.3100d376c43f791503882ff79acc1f1b.js",
+    "precache-manifest.7d48fd1b3b2d27f07349369a5b0b901d.js": "/WheelOfQA/precache-manifest.7d48fd1b3b2d27f07349369a5b0b901d.js",
     "service-worker.js": "/WheelOfQA/service-worker.js",
-    "static/css/main.ae7bc2d1.chunk.css.map": "/WheelOfQA/static/css/main.ae7bc2d1.chunk.css.map",
+    "static/css/main.b97c6f13.chunk.css.map": "/WheelOfQA/static/css/main.b97c6f13.chunk.css.map",
     "static/js/2.4963b150.chunk.js.LICENSE.txt": "/WheelOfQA/static/js/2.4963b150.chunk.js.LICENSE.txt",
     "static/media/logo.svg": "/WheelOfQA/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.07dec595.js",
     "static/js/2.4963b150.chunk.js",
-    "static/css/main.ae7bc2d1.chunk.css",
+    "static/css/main.b97c6f13.chunk.css",
     "static/js/main.66ba0279.chunk.js"
   ]
 }
