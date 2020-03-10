@@ -4,6 +4,7 @@ import logo from './logo.svg';
 import './App.css';
 import EditableWheelItem from './EditableWheelItem';
 import './ListColumn.css';
+import ControlEditabilityOfList from './ControlEditabilityOfList';
 
 const ListColumn = ({
     columnTitle,
@@ -31,23 +32,13 @@ const ListColumn = ({
 
     return (
         <div className='columnsOfNames'>
-            <h2>{columnTitle}
-                <button type='button' style={{ display: listIsEditable ? 'none' : '' }} onClick={toggleEditableList}>
-                    {listIsEditable ? '' : 'Edit List'}
-                </button>
-                {(listIsEditable === true) &&
-                    <div>
-                        <button type='button' onClick={addingAnItemToTheList}>Add Item</button>
-                        <button type='button' onClick={removingAnItemFromTheList}>Remove Item</button>
-                        <button type='button'
-                            onClick={toggleEditableList}
-                            style={{ background: 'skyblue', marginLeft: '15px' }}
-                        >
-                            Done Editing
-                </button>
-                    </div>
-                }
-            </h2>
+            <ControlEditabilityOfList
+                columnTitle={columnTitle}
+                listIsEditable={listIsEditable}
+                toggleEditableList={toggleEditableList}
+                addingAnItemToTheList={addingAnItemToTheList}
+                removingAnItemFromTheList={removingAnItemFromTheList}
+            />
             <div>
                 <Droppable droppableId={droppableId}>
                     {(provided, snapshot) => (
