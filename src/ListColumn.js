@@ -1,38 +1,60 @@
 import React, { useState, useRef } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import logo from './logo.svg';
 import './App.css';
 import EditableWheelItem from './EditableWheelItem';
 import './ListColumn.css';
-import ControlEditabilityOfList from './ControlEditabilityOfList';
+import ListEditingControls from './ListEditingControls';
 
 const ListColumn = ({
     columnTitle,
     addItemToList,
     removeItemFromList,
-    getListStyle,
     allItems,
     changeItemContent,
-    getItemStyle,
     droppableId,
     functionForEditingList }) => {
+
     const [listIsEditable, setListIsEditable] = useState(false);
+
+    const grid = 8;
+
+    const getItemStyle = (isDragging, draggableStyle) => ({
+        // some basic styles to make the items look a bit nicer
+        userSelect: 'none',
+        padding: grid * 2,
+        margin: `0 0 ${grid}px 0`,
+
+        // change background colour if dragging
+        background: isDragging ? 'aquamarine' : 'turquoise',
+
+        // styles we need to apply on draggables
+        ...draggableStyle
+    });
 
     const toggleEditableList = () => {
         setListIsEditable(!listIsEditable);
     }
 
-    const addingAnItemToTheList = () =>{
+    const addingAnItemToTheList = () => {
         addItemToList(functionForEditingList);
     }
 
-    const removingAnItemFromTheList = () =>{
+    const removingAnItemFromTheList = () => {
         removeItemFromList(functionForEditingList);
     }
 
+    const getListStyle = isDraggingOver => ({
+        background: isDraggingOver ? 'lightblue' : 'lightgrey',
+        padding: grid,
+        width: 250,
+        overflow: 'hidden',
+        wrap: 'no-wrap',
+        textOverflow: 'ellipsis',
+    });
+
     return (
         <div className='columnsOfNames'>
-            <ControlEditabilityOfList
+            <ListEditingControls
                 columnTitle={columnTitle}
                 listIsEditable={listIsEditable}
                 toggleEditableList={toggleEditableList}
@@ -45,7 +67,6 @@ const ListColumn = ({
                         <div
                             ref={provided.innerRef}
                             style={getListStyle(snapshot.isDraggingOver)}>
-
                             {allItems.map((item, index) => (
                                 listIsEditable ?
                                     <EditableWheelItem
@@ -73,8 +94,6 @@ const ListColumn = ({
                                             </div>
                                         )}
                                     </Draggable>
-
-
                             ))}
                             {provided.placeholder}
                         </div>

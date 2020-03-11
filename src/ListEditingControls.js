@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ControlEditabilityOfList = ({
+const ListEditingControls = ({
     columnTitle,
     listIsEditable,
     toggleEditableList,
@@ -27,4 +27,4 @@ const ControlEditabilityOfList = ({
     );
 }
 
-export default ControlEditabilityOfList;
+export default ListEditingControls;

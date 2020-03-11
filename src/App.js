@@ -5,36 +5,6 @@ import './App.css';
 import Wheel from './wheel';
 import ListColumn from './ListColumn';
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         {/* <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a> */}
-
-//         found something
-//       </header>
-//     </div>
-//   );
-// }
-
-// fake data generator
-// const getItems = (count, offset = 0) =>
-//     Array.from({ length: count }, (v, k) => k).map(k => ({
-//         id: `item-${k + offset}`,
-//         content: `item ${k + offset}`
-//     }));
-
 const getItems = () => {
   return [
     {
@@ -97,29 +67,6 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 
   return result;
 };
-
-const grid = 8;
-
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
-  userSelect: 'none',
-  padding: grid * 2,
-  margin: `0 0 ${grid}px 0`,
-
-  // change background colour if dragging
-  background: isDragging ? 'aquamarine' : 'turquoise',
-
-  // styles we need to apply on draggables
-  ...draggableStyle
-});
-
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: grid,
-  width: 250
-});
-
-
 
 
 const App = () => {
@@ -284,9 +231,7 @@ const App = () => {
             addItemToList={addItemToList}
             removeItemFromList={removeItemFromList}
             toggleEditableList={toggleEditableList}
-            getListStyle={getListStyle}
             changeItemContent={changeItemContent}
-            getItemStyle={getItemStyle}
             allItems={teamMembers}
             droppableId='droppable2'
             functionForEditingList={setTeamMembers}
@@ -297,9 +242,7 @@ const App = () => {
             addItemToList={addItemToList}
             removeItemFromList={removeItemFromList}
             toggleEditableList={toggleEditableList}
-            getListStyle={getListStyle}
             changeItemContent={changeItemContent}
-            getItemStyle={getItemStyle}
             allItems={availableForQA}
             droppableId='droppable'
             functionForEditingList={setAvailableForQA}
