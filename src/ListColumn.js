@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import './App.css';
 import EditableWheelItem from './EditableWheelItem';
@@ -48,7 +48,7 @@ const ListColumn = ({
         padding: grid,
         width: 250,
         overflow: 'hidden',
-        wrap: 'no-wrap',
+        whiteSpace: 'no-wrap',
         textOverflow: 'ellipsis',
     });
 

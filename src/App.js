@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { DragDropContext} from 'react-beautiful-dnd';
-import logo from './logo.svg';
+import { DragDropContext } from 'react-beautiful-dnd';
 import './App.css';
 import Wheel from './wheel';
 import ListColumn from './ListColumn';
@@ -78,11 +77,11 @@ const App = () => {
   const [titleCanChange, setTitleCanChange] = useState(false);
   const [listIsEditable, setListIsEditable] = useState(false);
 
-  const popUpWinningModal = (winner) => {
+  const popUpWinningModal = () => {
     setFoundWinner(true);
   }
 
-  const popUpSassyModal = (winner) => {
+  const popUpSassyModal = () => {
     setFoundWinner(true);
   }
   /**
@@ -108,8 +107,8 @@ const App = () => {
     // reordering items in the same list
     if (source.droppableId === destination.droppableId) {
       const items = reorder(
-        getList(source.droppableId),//droppableID2
-        source.index,//
+        getList(source.droppableId),
+        source.index,
         destination.index
       );
 
@@ -127,7 +126,7 @@ const App = () => {
         source,
         destination
       );
-      
+
       setAvailableForQA(result.droppable);
       setTeamMembers(result.droppable2);
     }
@@ -199,11 +198,11 @@ const App = () => {
           open={foundWinner}
           onClick={closeIt}
         >
-          <div className='sassy-announce'>Well look at  </div>
-          <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
-          <div className='sassy-announce'>over here!</div>
-          <div className='sassy-announce'>Spinner of Wheels and Finder of Bugs!</div>
-          <div className='sassy-announce'>You spun it, now you've WON it</div>
+          <div className='sassy-announce'>Well look at<br />
+            <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
+            over here! <br />
+            Spinner of Wheels and Finder of Bugs! <br />
+            You spun it, now you've WON it</div>
           <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
         </dialog>
 
