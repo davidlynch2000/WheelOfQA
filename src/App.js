@@ -90,8 +90,8 @@ const App = () => {
    * source arrays stored in the state.
    */
   const id2List = {
-    droppable: availableForQA,
-    droppable2: teamMembers,
+    wheelItems: availableForQA,
+    allItems: teamMembers,
   };
 
   const getList = id => id2List[id];
@@ -112,7 +112,7 @@ const App = () => {
         destination.index
       );
 
-      if (source.droppableId === 'droppable2') {
+      if (source.droppableId === 'allItems') {
         setTeamMembers(items)
       }
       else {
@@ -127,8 +127,8 @@ const App = () => {
         destination
       );
 
-      setAvailableForQA(result.droppable);
-      setTeamMembers(result.droppable2);
+      setAvailableForQA(result.wheelItems);
+      setTeamMembers(result.allItems);
     }
   };
 
@@ -198,11 +198,13 @@ const App = () => {
           open={foundWinner}
           onClick={closeIt}
         >
-          <div className='sassy-announce'>Well look at<br />
+          <div className='sassy-announce'>
+            Well look at
             <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
-            over here! <br />
-            Spinner of Wheels and Finder of Bugs! <br />
-            You spun it, now you've WON it</div>
+            over here!
+            <br />Spinner of Wheels and Finder of Bugs!
+            <br />You spun it, now you've WON it
+          </div>
           <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
         </dialog>
 
@@ -232,7 +234,7 @@ const App = () => {
             toggleEditableList={toggleEditableList}
             changeItemContent={changeItemContent}
             allItems={teamMembers}
-            droppableId='droppable2'
+            droppableId='allItems'
             functionForEditingList={setTeamMembers}
           />
 
@@ -243,7 +245,7 @@ const App = () => {
             toggleEditableList={toggleEditableList}
             changeItemContent={changeItemContent}
             allItems={availableForQA}
-            droppableId='droppable'
+            droppableId='wheelItems'
             functionForEditingList={setAvailableForQA}
           />
 
