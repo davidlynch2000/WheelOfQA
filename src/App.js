@@ -75,7 +75,6 @@ const App = () => {
   const [foundWinner, setFoundWinner] = useState(false);
   const [title, setTitle] = useState('Wheel of QA!');
   const [titleCanChange, setTitleCanChange] = useState(false);
-  const [listIsEditable, setListIsEditable] = useState(false);
 
   const popUpWinningModal = () => {
     setFoundWinner(true);
@@ -153,10 +152,6 @@ const App = () => {
     setTitle(e.target.value);
   }
 
-  const toggleEditableList = () => {
-    setListIsEditable(!listIsEditable);
-  }
-
   const changeItemContent = (value, idx, functionForEditingList) => {
     functionForEditingList(curTeamMembers => {
       const curTeamMembersCpy = curTeamMembers.slice();
@@ -231,7 +226,6 @@ const App = () => {
             columnTitle='Team Members'
             addItemToList={addItemToList}
             removeItemFromList={removeItemFromList}
-            toggleEditableList={toggleEditableList}
             changeItemContent={changeItemContent}
             allItems={teamMembers}
             droppableId='allItems'
@@ -242,7 +236,6 @@ const App = () => {
             columnTitle='Available For QA'
             addItemToList={addItemToList}
             removeItemFromList={removeItemFromList}
-            toggleEditableList={toggleEditableList}
             changeItemContent={changeItemContent}
             allItems={availableForQA}
             droppableId='wheelItems'
