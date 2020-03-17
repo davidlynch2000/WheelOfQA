@@ -134,6 +134,7 @@ const App = () => {
 
   const closeIt = () => {
     setFoundWinner(false);
+    setSelectedForQA('');
   }
 
   const toggleTitleEditable = () => {

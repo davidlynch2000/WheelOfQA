@@ -1,13 +1,45 @@
 import React, { useState } from 'react';
 
 const ListEditingControls = ({
-    columnTitle,
+    title,
     listIsEditable,
     toggleEditableList,
     addingAnItemToTheList,
-    removingAnItemFromTheList }) => {
+    removingAnItemFromTheList,
+    changeTitle, }) => {
+
+    const [editTitle, setEditTitle] = useState(false);
+
+    const toggleEditTitle = () => {
+        setEditTitle(!editTitle);
+    }
+
+    const titleChangeHandler = (e) => {
+        console.log(`called the changeHandler with ${e.target.value}`);
+        changeTitle(e.target.value);
+    }
+
+    const checkForEnter = (e) => {
+        if (e.keyCode == 13) {
+          toggleEditTitle();
+        }
+      }
     return (
-        <h2>{columnTitle}
+        <h2>
+            <span onClick={toggleEditTitle}>
+                {editTitle ?
+                    <input 
+                        type='text' 
+                        value={title}
+                        onChange={titleChangeHandler}
+                        autoFocus
+                        onBlur={toggleEditTitle}
+                        onKeyDown={checkForEnter}
+                    />
+                    :
+                    title
+                }
+            </span>
             <button type='button' style={{ display: listIsEditable ? 'none' : '' }} onClick={toggleEditableList}>
                 {listIsEditable ? '' : 'Edit List'}
             </button>
@@ -20,7 +52,7 @@ const ListEditingControls = ({
                         style={{ background: 'skyblue', marginLeft: '15px' }}
                     >
                         Done Editing
-    </button>
+                    </button>
                 </div>
             }
         </h2>

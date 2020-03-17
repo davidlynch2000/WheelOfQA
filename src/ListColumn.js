@@ -15,6 +15,7 @@ const ListColumn = ({
     functionForEditingList }) => {
 
     const [listIsEditable, setListIsEditable] = useState(false);
+    const [title, setTitle] = useState(columnTitle);
 
     const grid = 8;
 
@@ -52,14 +53,19 @@ const ListColumn = ({
         textOverflow: 'ellipsis',
     });
 
+    const changeTitle = (value) =>{
+        setTitle(value);
+    }
+
     return (
         <div className='columnsOfNames'>
             <ListEditingControls
-                columnTitle={columnTitle}
+                title={title}
                 listIsEditable={listIsEditable}
                 toggleEditableList={toggleEditableList}
                 addingAnItemToTheList={addingAnItemToTheList}
                 removingAnItemFromTheList={removingAnItemFromTheList}
+                changeTitle={changeTitle}
             />
             <div>
                 <Droppable droppableId={droppableId}>
