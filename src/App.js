@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import './App.css';
 import Wheel from './wheel';
@@ -75,6 +75,8 @@ const App = () => {
   const [foundWinner, setFoundWinner] = useState(false);
   const [title, setTitle] = useState('Wheel of QA!');
   const [titleCanChange, setTitleCanChange] = useState(false);
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
 
   const popUpWinningModal = () => {
     setFoundWinner(true);
@@ -174,6 +176,22 @@ const App = () => {
     })
   }
 
+  function useOutsideAlerter(ref) {
+    function handleClickOutside(event) {
+      if (foundWinner && ref.current && !ref.current.contains(event.target)) {
+        closeIt();
+      }
+    }  
+    useEffect(() => {
+      // Bind the event listener
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    },[foundWinner]);
+  }
+  
   // What was this supposed to do? When would I not want it to be displayed with flex?
   const flexClass = foundWinner ? 'displayFlex' : '';
 
@@ -184,6 +202,7 @@ const App = () => {
           className={`announceTheWinner ${flexClass}`}
           open={foundWinner}
           onClick={closeIt}
+          ref={wrapperRef}
         >
           <div className='announce'>The Winner is </div>
           <div className='nameOfWinner'>{selectedForQA}</div>
@@ -193,6 +212,7 @@ const App = () => {
           className={`announceTheWinner ${flexClass}`}
           open={foundWinner}
           onClick={closeIt}
+          ref={wrapperRef}
         >
           <div className='sassy-announce'>
             Well look at
