@@ -31,16 +31,18 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  animation: shimmerIn 3s ease-out 1;
+  animation: shimmerIn 3s ease-out;
   color: blue;
 }
 
 @keyframes shimmerIn{
   0%{
     filter:blur(500px);
+    transform:rotateZ(0deg);
   }
   100%{
     filter: blur(0px);
+    transform:rotateZ(1440deg)
   }
 }
 
