@@ -42,11 +42,11 @@ const getItems = () => {
   ];
 }
 
-// minimal edits to the list in place
 const reorder = (list, startIndex, endIndex) => {
-  const [removed] = list.splice(startIndex, 1);
-  list.splice(endIndex, 0, removed);
-  return list;
+  const listCpy = list.slice();
+  const [removed] = listCpy.splice(startIndex, 1);
+  listCpy.splice(endIndex, 0, removed);
+  return listCpy;
 };
 
 /**
