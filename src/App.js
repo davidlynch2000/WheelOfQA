@@ -1,9 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { DragDropContext } from 'react-beautiful-dnd';
 import './App.css';
 import Wheel from './wheel';
 import ListColumn from './ListColumn';
-import {useClickOutsideCloser} from './customMainUtils';
+import { useClickOutsideCloser } from './customMainUtils';
 
 const getItems = () => {
   return [
@@ -40,6 +40,12 @@ const getItems = () => {
       content: 'Deb'
     },
   ];
+}
+
+const pickAnimationForWinningName = () => {
+  const allAnimations = ['spinningShimmerIn'];
+  const winningIdx = Math.floor(Math.random() * allAnimations.length);
+  return allAnimations[winningIdx];
 }
 
 const reorder = (list, startIndex, endIndex) => {
@@ -177,6 +183,7 @@ const App = () => {
 
   // What was this supposed to do? When would I not want it to be displayed with flex?
   const flexClass = foundWinner ? 'displayFlex' : '';
+  const animationForWinningName = pickAnimationForWinningName();
 
   return (
     <div className="App">
@@ -188,7 +195,7 @@ const App = () => {
           ref={wrapperRef}
         >
           <div className='announce'>The Winner is </div>
-          <div className='nameOfWinner'>{selectedForQA}</div>
+          <div className={`nameOfWinner ${animationForWinningName}`}>{selectedForQA}</div>
         </dialog>
         :
         <dialog

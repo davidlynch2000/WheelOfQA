@@ -31,8 +31,12 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  animation: shimmerIn 3s ease-out;
+
   color: blue;
+}
+
+.spinningShimmerIn{
+  animation: shimmerIn 3s ease-out;
 }
 
 @keyframes shimmerIn{
