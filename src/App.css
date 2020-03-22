@@ -31,7 +31,6 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-
   color: blue;
 }
 
@@ -39,6 +38,30 @@
   animation: shimmerIn 3s ease-out;
 }
 
+.pulsingName{
+  animation: pulsingName 4s ease-in;
+}
+
+@keyframes pulsingName{
+  0%{
+    transform: scale(0,0);
+  }
+  35%{
+    transform: scale(1.2,1.2);
+  }
+  55%{
+    transform: scale(.6,.6);
+  }
+  70%{
+    transform: scale(1.35,1.35);
+  }
+  80%{
+    transform: scale(.75,.75);
+  }
+  100%{
+    transform: scale(1,1);
+  }
+}
 @keyframes shimmerIn{
   0%{
     filter:blur(500px);

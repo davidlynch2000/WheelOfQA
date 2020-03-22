@@ -43,7 +43,10 @@ const getItems = () => {
 }
 
 const pickAnimationForWinningName = () => {
-  const allAnimations = ['spinningShimmerIn'];
+  const allAnimations = [
+    'spinningShimmerIn',
+    'pulsingName',
+  ];
   const winningIdx = Math.floor(Math.random() * allAnimations.length);
   return allAnimations[winningIdx];
 }
@@ -213,7 +216,6 @@ const App = () => {
           </div>
           <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
         </dialog>
-
       }
 
       <div className="headerBanner">
