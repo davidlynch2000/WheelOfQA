@@ -46,6 +46,7 @@ const pickAnimationForWinningName = () => {
   const allAnimations = [
     'spinningShimmerIn',
     'pulsingName',
+    'fireFlashName',
   ];
   const winningIdx = Math.floor(Math.random() * allAnimations.length);
   return allAnimations[winningIdx];
