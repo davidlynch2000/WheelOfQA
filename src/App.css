@@ -46,6 +46,111 @@
   animation: fireFlashName 5s ease-out forwards;
 }
 
+.oneLapAndPulse{
+  animation: oneLapAndPulse 7s linear forwards infinite;
+}
+
+.crazyJumping{
+  animation:crazyJumping 6s linear forwards;
+}
+
+@keyframes crazyJumping{
+  0%{
+    transform:rotate(30deg) translateX(-100%);
+  }
+  24%{
+    transform:rotate(30deg) translateX(200%);
+    opacity:1;
+  }
+  25%{
+    opacity:0;
+  }
+  26%{
+    opacity:0;
+    transform:rotate(30deg) translateX(-100%);
+  }
+  27%{
+    opacity:1;
+    transform:rotate(300deg) translateX(-100%);
+  }
+  48%{
+    transform:rotate(120deg) translateX(200%);
+  }
+}
+
+@keyframes oneLapAndPulse{
+  5%{
+    transform:translate(-250px,0px);
+  }
+  10%{
+    transform:translate(-250px,-250px);
+  }
+  20%{
+    transform:translate(250px,-250px);
+  }
+  30%{
+    transform:translate(250px,250px);
+  }
+  40%{
+    transform:translate(-250px,250px);
+  }
+  45%{
+    transform:translate(-250px,0px);
+  }
+  50%,60%{
+    transform:translate(0px,0px);
+    color:blue;
+  }
+  61%{
+    transform: scale(1.35,1.35);
+    color:red;
+  }
+  62%,66%{
+    transform:scale(1,1);
+    color:blue;
+  }
+  67%{
+    transform: scale(2.0,2.0);
+    color:red;
+  }
+  68%,72%{
+    transform:scale(1,1);
+    color:blue;
+  }
+  73%{
+    transform: scale(2.65,2.65);
+    color:red;
+  }
+  74%,81%{
+    transform:scale(1,1);
+    color:blue;
+  }
+  82%{
+    transform: scale(2.65,2.65);
+    color:red;
+  }
+  83%,87%{
+    transform:scale(1,1);
+    color:blue;
+  }
+  88%{
+    transform: scale(2.0,2.0);
+    color:red;
+  }
+  89%,93%{
+    transform:scale(1,1);
+    color:blue;
+  }
+  94%{
+    transform: scale(1.35,1.35);
+    color:red;
+  }
+  95%,99%{
+    transform:scale(1,1);
+    color:blue;
+  }
+}
+
 @keyframes fireFlashName{
   50%{
     color: orange;
