@@ -3,7 +3,7 @@ import { DragDropContext } from 'react-beautiful-dnd';
 import './App.css';
 import Wheel from './wheel';
 import ListColumn from './ListColumn';
-import { useClickOutsideCloser } from './customMainUtils';
+import WinningAnnouncement from './WinningAnnouncement';
 
 const getItems = () => {
   return [
@@ -42,18 +42,6 @@ const getItems = () => {
   ];
 }
 
-const pickAnimationForWinningName = () => {
-  const allAnimations = [
-    'spinningShimmerIn',
-    'pulsingName',
-    'fireFlashName',
-    'oneLapAndPulse',
-    'crazyJumping',
-  ];
-  const winningIdx = Math.floor(Math.random() * allAnimations.length);
-  return allAnimations[winningIdx];
-}
-
 const reorder = (list, startIndex, endIndex) => {
   const listCpy = list.slice();
   const [removed] = listCpy.splice(startIndex, 1);
@@ -65,11 +53,11 @@ const reorder = (list, startIndex, endIndex) => {
  * Moves an item from one list to another list.
  */
 const move = (source, destination, droppableSource, droppableDestination) => {
-  const sourceClone = Array.from(source);
-  const destClone = Array.from(destination);
+  // this feels too verbose...
+  const sourceClone = source.slice();
+  const destClone = destination.slice(); 
   const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-  destClone.splice(droppableDestination.index, 0, removed);
+  destClone.splice(droppableDestination.index, 0, removed); 
 
   const result = {};
   result[droppableSource.droppableId] = sourceClone;
@@ -86,12 +74,12 @@ const App = () => {
   const [foundWinner, setFoundWinner] = useState(false);
   const [title, setTitle] = useState('Wheel of QA!');
   const [titleCanChange, setTitleCanChange] = useState(false);
-  const wrapperRef = useRef(null);
+
   const closeIt = () => {
     setFoundWinner(false);
     setSelectedForQA('');
   }
-  useClickOutsideCloser(wrapperRef, foundWinner, closeIt);
+
 
   const popUpWinningModal = () => {
     setFoundWinner(true);
@@ -187,39 +175,14 @@ const App = () => {
     })
   }
 
-  // What was this supposed to do? When would I not want it to be displayed with flex?
-  const flexClass = foundWinner ? 'displayFlex' : '';
-  const animationForWinningName = pickAnimationForWinningName();
-
   return (
     <div className="App">
-      {availableForQA.length > 0 ?
-        <dialog
-          className={`announceTheWinner ${flexClass}`}
-          open={foundWinner}
-          onClick={closeIt}
-          ref={wrapperRef}
-        >
-          <div className='announce'>The Winner is </div>
-          <div className={`nameOfWinner ${animationForWinningName}`}>{selectedForQA}</div>
-        </dialog>
-        :
-        <dialog
-          className={`announceTheWinner ${flexClass}`}
-          open={foundWinner}
-          onClick={closeIt}
-          ref={wrapperRef}
-        >
-          <div className='sassy-announce'>
-            Well look at
-            <div className='sassy-nameOfWinner'>CAPTAIN QA</div>
-            over here!
-            <br />Spinner of Wheels and Finder of Bugs!
-            <br />You spun it, now you've WON it
-          </div>
-          <div>And while you're at it, please fix my bugs at https://github.com/davidlynch2000/WheelOfQA</div>
-        </dialog>
-      }
+      <WinningAnnouncement
+        availableForQA={availableForQA}
+        foundWinner={foundWinner}
+        closeIt={closeIt}
+        selectedForQA={selectedForQA}
+      />
 
       <div className="headerBanner">
         {titleCanChange ?
@@ -269,7 +232,6 @@ const App = () => {
       </div>
     </div>
   );
-
 }
 
 export default App;
