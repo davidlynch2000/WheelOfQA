@@ -47,7 +47,7 @@
 }
 
 .oneLapAndPulse{
-  animation: oneLapAndPulse 7s linear forwards infinite;
+  animation: oneLapAndPulse 7s cubic-bezier(.1,-.10,.65,1.20) forwards infinite;
 }
 
 .crazyJumping{

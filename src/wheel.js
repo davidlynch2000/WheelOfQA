@@ -4,7 +4,7 @@ import './wheel.css';
 const Wheel = (props) => {
     const [selectedItemIdx, setSelectedItemIdx] = useState(undefined);
     const spinning = useRef('');
-    const numTotalSpins = useRef(5);
+    const numTotalSpins = 5;
     const selectedName = useRef('');
 
     const SECONDS_TO_SPIN = 6;
@@ -33,7 +33,7 @@ const Wheel = (props) => {
     const wheelVars = {
         '--nb-item': items.length > 0 ? items.length : 1,
         '--selected-item': selectedItemIdx,
-        '--nb-turn': numTotalSpins.current,
+        '--nb-turn': numTotalSpins,
         '--spinning-duration': `${SECONDS_TO_SPIN}s`,
     };
 

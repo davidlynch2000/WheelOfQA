@@ -55,9 +55,9 @@ const reorder = (list, startIndex, endIndex) => {
 const move = (source, destination, droppableSource, droppableDestination) => {
   // this feels too verbose...
   const sourceClone = source.slice();
-  const destClone = destination.slice(); 
+  const destClone = destination.slice();
   const [removed] = sourceClone.splice(droppableSource.index, 1);
-  destClone.splice(droppableDestination.index, 0, removed); 
+  destClone.splice(droppableDestination.index, 0, removed);
 
   const result = {};
   result[droppableSource.droppableId] = sourceClone;
@@ -79,7 +79,6 @@ const App = () => {
     setFoundWinner(false);
     setSelectedForQA('');
   }
-
 
   const popUpWinningModal = () => {
     setFoundWinner(true);
@@ -135,8 +134,6 @@ const App = () => {
       setTeamMembers(result.allItems);
     }
   };
-
-
 
   const toggleTitleEditable = () => {
     setTitleCanChange(curTitleEditable => {
