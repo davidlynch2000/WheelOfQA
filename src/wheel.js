@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import './wheel.css';
 
-const Wheel = (props) => {
+const Wheel = ({items, popUpWinningModal, popUpSassyModal, setSelectedForQA}) => {
     const [selectedItemIdx, setSelectedItemIdx] = useState(undefined);
     const spinning = useRef('');
     const numTotalSpins = 5;
@@ -11,24 +11,22 @@ const Wheel = (props) => {
 
     const reset = () => {
         spinning.current = ('');
-        props.popUpWinningModal(selectedName.current);
+        popUpWinningModal(selectedName.current);
     }
 
     const selectItem = () => {
-        if(props.items.length < 1){
-            props.popUpSassyModal();
+        if(items.length < 1){
+            popUpSassyModal();
             return;
         }
         spinning.current = 'spinning';
-        const selectedIdx = Math.floor(Math.random() * props.items.length);
+        const selectedIdx = Math.floor(Math.random() * items.length);
         console.log(`selectedIdx: ${selectedIdx}`);
-        props.setSelectedForQA(props.items[selectedIdx]);
-        selectedName.current = props.items[selectedIdx];
+        setSelectedForQA(items[selectedIdx]);
+        selectedName.current = items[selectedIdx];
         setSelectedItemIdx(selectedIdx);
         setTimeout(reset, SECONDS_TO_SPIN * 1000 * 1.001);
     }
-
-    const { items } = props;
 
     const wheelVars = {
         '--nb-item': items.length > 0 ? items.length : 1,

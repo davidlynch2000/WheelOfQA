@@ -54,6 +54,21 @@
   animation:crazyJumping 6s linear forwards;
 }
 
+.backgroundFloatPast{
+  background: linear-gradient(45deg, seagreen,slateblue,red);
+  background-size: 1500% 1500%;
+  animation: backgroundFloatPast 20s linear alternate infinite;
+}
+
+@keyframes backgroundFloatPast{
+  0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+}
+
 @keyframes crazyJumping{
   0%{
     transform:rotate(30deg) translateX(-100%);

@@ -11,6 +11,7 @@ const WinningAnnouncement = ({ availableForQA, foundWinner, closeIt, selectedFor
             'fireFlashName',
             'oneLapAndPulse',
             'crazyJumping',
+            'backgroundFloatPast',
         ];
         const winningIdx = Math.floor(Math.random() * allAnimations.length);
         return allAnimations[winningIdx];
