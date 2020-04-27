@@ -39,6 +39,10 @@ const getItems = () => {
       id: 'Deb',
       content: 'Deb'
     },
+    {
+      id: 'Stefania',
+      content: 'Stefania'
+    },
   ];
 }
 
